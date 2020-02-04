@@ -3,7 +3,7 @@ import React from 'react';
 function Two(props) {
     return (
         <div>
-        <input onChange={props._updateTwo} placeholder={props.second}></input>
+        <input placeholder="Enter" onChange={props._updateTwo} value={props.second}></input>
         </div>
     )
 }
