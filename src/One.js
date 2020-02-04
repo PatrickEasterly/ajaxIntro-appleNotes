@@ -1,10 +1,9 @@
 import React from 'react';
 
-function One() {
+function One(props) {
     return (
         <div>
-        <h1>One</h1>
-        <input></input>
+        <input onChange={props._updateOne} placeholder={props.first}></input>
         </div>
     )
 }
