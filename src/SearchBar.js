@@ -1,8 +1,20 @@
 import React from 'react';
 
-function SearchBar() {
+SearchBar.defaultProps = {
+    text: 'Default props'
+}
+
+function SearchBar({
+    text,
+    handleChange
+}) {
     return (
-        <div>f</div>
+        <input 
+        value={text}
+        onChange={(event)=> {
+            handleChange(event.target.value)
+        }}
+        />
     )
 }
 

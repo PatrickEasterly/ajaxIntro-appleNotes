@@ -17,13 +17,23 @@ class NotesApp extends React.Component {
             <div>
                 <h1>Notes App </h1>
                 <NewNote />
-                <SearchBar />
+                <SearchBar
+                text={this.state.searchText}
+                handleChange={this._setSearchText}
+                />
                 <NotesList />
                 <NoteEditor />
             </div>
         )
     }
 
+    _setSearchText=(searchText)=> {
+        this.setState({
+            searchText
+        }, ()=> {
+            console.log('f')
+        })
+    }
 }
 
 export default NotesApp;
