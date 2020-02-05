@@ -44,6 +44,15 @@ class App extends React.Component {
   _doMath=(a, b, sym)=>{
     let one = parseInt(a)
     let two = parseInt(b)
+    if(isNaN(one) || isNaN(two)){
+      
+      this.setState({
+        answer: 'Please enter a number.',
+        first: '',
+        second: '',
+      })
+      return;
+    }
     let theAnswer;
     if(sym === '+') {
       theAnswer = one + two
@@ -74,8 +83,8 @@ class App extends React.Component {
   }
   _reset=()=>{
     this.setState({
-      first: 'first',
-      second: 'second',
+      first: '',
+      second: '',
       answer: '(answer)'
     })
   }
