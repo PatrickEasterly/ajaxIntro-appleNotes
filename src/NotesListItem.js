@@ -1,9 +1,13 @@
 import React from 'react';
 
-function NotesListItem() {
+function NotesListItem({
+    title,
+    id,
+    key,
+}) {
     return (
         <li>
-            this is an item
+            {title}
         </li>
     )
 }

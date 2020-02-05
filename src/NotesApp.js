@@ -9,7 +9,28 @@ class NotesApp extends React.Component {
         super(props);
         this.state = {
             searchText: 'This is the Search Text',
-
+            notes: [
+                {
+                    id: '1',
+                    title: 'First note',
+                    copy: 'la la la',
+                },
+                {
+                    id: '22',
+                    title: 'second note',
+                    copy: 'ba ba ba',
+                },
+                {
+                    id: '333',
+                    title: 'third note',
+                    copy: 'ha ha ha',
+                },
+                {
+                    id: '4444',
+                    title: 'fourth note',
+                    copy: 'fa fa fa',
+                },
+            ]
         }
     }
     render() {
@@ -21,7 +42,9 @@ class NotesApp extends React.Component {
                 text={this.state.searchText}
                 handleChange={this._setSearchText}
                 />
-                <NotesList />
+                <NotesList 
+                notes={this.state.notes}
+                />
                 <NoteEditor />
             </div>
         )
@@ -31,7 +54,7 @@ class NotesApp extends React.Component {
         this.setState({
             searchText
         }, ()=> {
-            console.log('f')
+            console.log(searchText)
         })
     }
 }
