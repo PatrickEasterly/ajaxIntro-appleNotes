@@ -16,8 +16,9 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <One 
+        {/* <header className="App-header"> */}
+          <div>
+            <One 
           first={this.state.first}
           _updateOne={this._updateOne}
           />
@@ -33,11 +34,12 @@ class App extends React.Component {
           _updateTwo={this._updateTwo}
           />
           <p>{this.state.second}</p>
+          </div>
             <h1>=</h1>
           <div id='answer'><h1>{this.state.answer}</h1></div>
           
           <button onClick={this._reset}><h1>Reset</h1></button>
-        </header>
+        {/* </header> */}
       </div>
     )
   }
