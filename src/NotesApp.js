@@ -32,6 +32,7 @@ class NotesApp extends React.Component {
                 },
             ],
             currentNoteId: '',
+            currentTextField: '',
 
         }
     }
@@ -46,11 +47,35 @@ class NotesApp extends React.Component {
                 />
                 <NotesList 
                 notes={this._getFilteredNotes()}
-                handleClick={this._selectNote}
+                handleClick={this._selectNoteAndRenderCopy}
                 />
-                <NoteEditor />
+                <NoteEditor 
+                updateText={this._setTextValue}
+                currentTextField={this.state.currentTextField}
+                />
             </div>
         )
+    }
+
+    _setTextValue=(newNote)=> {
+        let newNoteState = [...this.state.notes]
+        
+        newNoteState = newNoteState.map(noteObj=>{
+            
+            if(this.state.currentNoteId === noteObj.id) {
+                noteObj.copy = newNote
+            } 
+            return noteObj
+        })
+        console.log(newNoteState)
+        this.setState({
+            notes: [...newNoteState],
+            currentTextField: newNote
+        }, ()=>{
+            console.log('yeet')
+        })
+        // this._getCurrentTextField(this.state.currentNoteId);
+
     }
 
     _setSearchText=(searchText)=> {
@@ -61,11 +86,29 @@ class NotesApp extends React.Component {
         })
     }
 
+    _selectNoteAndRenderCopy=(currentNoteId)=>{
+        this._selectNote(currentNoteId)
+        this._renderNoteCopy(currentNoteId)
+    }
+
     _selectNote=(currentNoteId)=> {
         this.setState({
             currentNoteId
         }, ()=>{
-            console.log(`This.state Currend id: ${this.state.currentNoteId}`)
+            // console.log(`This.state Currend id: ${this.state.currentNoteId}`)
+        })
+    }
+
+    _getCurrentTextField=(currentNoteId)=>{
+        return this.state.notes.filter(note=>{
+            return note.id === currentNoteId;
+        })[0].copy
+    }
+
+    _renderNoteCopy=(currentNoteId)=>{
+        const currentTextField = this._getCurrentTextField(currentNoteId);
+        this.setState({
+            currentTextField: currentTextField || 'note content not found'
         })
     }
 
@@ -77,8 +120,10 @@ class NotesApp extends React.Component {
         });
         return filteredArray;
     }
-
     
+    _updateNote=()=>{
+        console.log('fuck')
+    }
 
 }
 

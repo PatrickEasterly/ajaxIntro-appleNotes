@@ -2,7 +2,7 @@ import React from 'react';
 
 function NewNote() {
     return (
-        <button>+</button>
+        <button>New Note</button>
     )
 }
 

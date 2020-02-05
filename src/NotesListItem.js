@@ -10,6 +10,7 @@ function NotesListItem({
         <li
             onClick={()=>{
                 handleClick(id)
+                
             }}
         >
             {title}
