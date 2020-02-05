@@ -3,6 +3,7 @@ import NotesListItem from './NotesListItem';
 
 
 function NotesList({
+    handleClick,
     notes
 }) {
     return (
@@ -13,6 +14,7 @@ function NotesList({
                     title={note.title} 
                     id={note.id} 
                     key={note.id}
+                    handleClick={handleClick}
                     />
                 ))
             }

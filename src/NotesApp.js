@@ -8,7 +8,7 @@ class NotesApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchText: 'This is the Search Text',
+            searchText: '',
             notes: [
                 {
                     id: '1',
@@ -30,7 +30,9 @@ class NotesApp extends React.Component {
                     title: 'fourth note',
                     copy: 'fa fa fa',
                 },
-            ]
+            ],
+            currentNoteId: '',
+
         }
     }
     render() {
@@ -43,7 +45,8 @@ class NotesApp extends React.Component {
                 handleChange={this._setSearchText}
                 />
                 <NotesList 
-                notes={this.state.notes}
+                notes={this._getFilteredNotes()}
+                handleClick={this._selectNote}
                 />
                 <NoteEditor />
             </div>
@@ -54,9 +57,29 @@ class NotesApp extends React.Component {
         this.setState({
             searchText
         }, ()=> {
-            console.log(searchText)
+            // console.log(searchText)
         })
     }
+
+    _selectNote=(currentNoteId)=> {
+        this.setState({
+            currentNoteId
+        }, ()=>{
+            console.log(`This.state Currend id: ${this.state.currentNoteId}`)
+        })
+    }
+
+    _getFilteredNotes=()=>{
+        const filteredArray = this.state.notes.filter(note=> {
+            const titleDoesMatch = note.title.toLocaleLowerCase().includes(this.state.searchText);
+            const copyDoesMatch = note.copy.toLocaleLowerCase().includes(this.state.searchText);
+            return titleDoesMatch || copyDoesMatch;
+        });
+        return filteredArray;
+    }
+
+    
+
 }
 
 export default NotesApp;

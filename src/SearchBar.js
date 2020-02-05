@@ -11,6 +11,7 @@ function SearchBar({
     return (
         <input 
         value={text}
+        placeholder="Search notes"
         onChange={(event)=> {
             handleChange(event.target.value)
         }}

@@ -5,7 +5,7 @@ import NotesApp from './NotesApp';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <NotesApp />
     </div>
   );
