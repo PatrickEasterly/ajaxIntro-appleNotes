@@ -3,19 +3,16 @@ import React from 'react';
 function NotesListItem({
     title,
     id,
-    handleClick,
-    // key,
+    handleClick
 }) {
     return (
         <li
-            onClick={()=>{
-                handleClick(id)
-                
+            onClick={() => {
+                console.log(`You clicked ${id}`);
+                handleClick(id);
             }}
-        >
-            {title}
-        </li>
-    )
+        >{title}</li>
+    );
 }
 
 export default NotesListItem;

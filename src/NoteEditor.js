@@ -1,16 +1,15 @@
 import React from 'react';
 
 function NoteEditor({
-    updateText,
-    currentTextField
+    note
 }) {
     return (
-        <textarea value={currentTextField} onChange={(e)=>{
-            // console.log(e.target.value)
-            // set the state of the target (notes.copy) to target value
-            updateText(e.target.value)
-        }}/>
-    )
+        <div>
+            <input value={note.title} />
+            <br />
+            <textarea value={note.copy} />
+        </div>
+    );
 }
 
 export default NoteEditor;

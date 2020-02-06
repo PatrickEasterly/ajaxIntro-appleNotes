@@ -1,7 +1,7 @@
 import React from 'react';
 
 SearchBar.defaultProps = {
-    text: 'Default props'
+    text: 'default search text'
 }
 
 function SearchBar({
@@ -10,13 +10,12 @@ function SearchBar({
 }) {
     return (
         <input 
-        value={text}
-        placeholder="Search notes"
-        onChange={(event)=> {
+          onChange={(event) => {
             handleChange(event.target.value)
-        }}
+          }}
+          value={text} 
         />
-    )
+    );
 }
 
 export default SearchBar;

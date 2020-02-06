@@ -2,8 +2,8 @@ import React from 'react';
 
 function NewNote() {
     return (
-        <button>New Note</button>
-    )
+        <button>+</button>
+    );
 }
 
 export default NewNote;
