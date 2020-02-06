@@ -1,40 +1,72 @@
 import React from 'react';
 
-function NoteEditor({
-    note,
-    handleChange
-}) {
+class NoteEditor extends React.Component {
 
-    return (
-        <div>
-            <input 
-                value={note.title} 
-                onChange={(event) => {
-                    // NOOOOOOOOO!
-                    // Don't mutate an object or array
-                    // that you receive as an argument.
-                    // note.title = event.target.value;  
-                    
-                    // Instead, send back a copy
-                    // with the updated "title" 
-                    handleChange({
-                        ...note,
-                        title: event.target.value
-                    });
-                }}
-            />
-            <br />
-            <textarea 
-                value={note.copy} 
-                onChange={(event) => {
-                    handleChange({
-                        ...note,
-                        copy: event.target.value
-                    });
-                }}
-            />
-        </div>
-    );
+    constructor(props) {
+        super(props);
+        this.state = {
+            changedNote: {}
+        }
+    }
+    
+    // Recieving the new props and the existing state 
+    static getDerivedStateFromProps(props, state){
+        // Returns the new version of state.
+        console.log('Get derived state from props')
+        console.table(props.note)
+        console.table(state.changedNote)
+
+        if (props.note.id === state.changedNote.id) {
+            return {
+                ...state
+            } 
+        } else {
+            return {
+                ...state,
+                changedNote: {
+                    ...props.note
+                }
+            }
+        }
+
+
+    }
+
+    render () {
+    
+        return (
+            <div>
+                <input 
+                    value={this.state.changedNote.title} 
+                    onChange={(event) => {
+                        this._updateLocalNote({
+                            ...this.state.changedNote,
+                            title: event.target.value
+                        });
+                    }}
+                />
+                <br />
+                <textarea 
+                    value={this.state.changedNote.copy} 
+                    onChange={(event) => {
+                        this._updateLocalNote({
+                            ...this.state.changedNote,
+                            copy: event.target.value,
+                            
+                        });
+                    }}
+                />
+            </div>
+        );
+    }
+
+    _updateLocalNote=(changedNote)=> {
+        this.setState({
+            changedNote
+        })
+    }
 }
+
+
 
 export default NoteEditor;
