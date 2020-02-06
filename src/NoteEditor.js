@@ -36,28 +36,36 @@ class NoteEditor extends React.Component {
     
         return (
             <div>
-                <input 
-                    value={this.state.changedNote.title} 
-                    onChange={(event) => {
-                        this._updateLocalNote({
-                            ...this.state.changedNote,
-                            title: event.target.value
-                        });
-                    }}
-                />
-                <br />
-                <textarea 
-                    value={this.state.changedNote.copy} 
-                    onChange={(event) => {
-                        this._updateLocalNote({
-                            ...this.state.changedNote,
-                            copy: event.target.value,
-                            
-                        });
-                    }}
-                />
+                <form onSubmit={this._handleSubmit}>
+                    <input 
+                        value={this.state.changedNote.title} 
+                        onChange={(event) => {
+                            this._updateLocalNote({
+                                ...this.state.changedNote,
+                                title: event.target.value
+                            });
+                        }}
+                    />
+                    <br />
+                    <textarea 
+                        value={this.state.changedNote.copy} 
+                        onChange={(event) => {
+                            this._updateLocalNote({
+                                ...this.state.changedNote,
+                                copy: event.target.value,
+                                
+                            });
+                        }}
+                    />
+                    <button>Save</button>
+                </form>
             </div>
         );
+    }
+
+    _handleSubmit=(event)=> {
+        event.preventDefault();
+        this.props.handleChange(this.state.changedNote)
     }
 
     _updateLocalNote=(changedNote)=> {
