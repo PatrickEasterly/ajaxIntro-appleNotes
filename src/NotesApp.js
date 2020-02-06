@@ -67,14 +67,12 @@ class NotesApp extends React.Component {
             } 
             return noteObj
         })
-        console.log(newNoteState)
+        
         this.setState({
             notes: [...newNoteState],
             currentTextField: newNote
         }, ()=>{
-            console.log('yeet')
         })
-        // this._getCurrentTextField(this.state.currentNoteId);
 
     }
 
@@ -99,17 +97,17 @@ class NotesApp extends React.Component {
         })
     }
 
-    _getCurrentTextField=(currentNoteId)=>{
-        return this.state.notes.filter(note=>{
-            return note.id === currentNoteId;
-        })[0].copy
-    }
-
     _renderNoteCopy=(currentNoteId)=>{
         const currentTextField = this._getCurrentTextField(currentNoteId);
         this.setState({
             currentTextField: currentTextField || 'note content not found'
         })
+    }
+
+    _getCurrentTextField=(currentNoteId)=>{
+        return this.state.notes.filter(note=>{
+            return note.id === currentNoteId;
+        })[0].copy
     }
 
     _getFilteredNotes=()=>{
