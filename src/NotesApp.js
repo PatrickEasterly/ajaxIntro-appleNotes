@@ -86,6 +86,7 @@ class NotesApp extends React.Component {
             console.log('updated current id')
         });
     }
+    
 }
 
 export default NotesApp;
