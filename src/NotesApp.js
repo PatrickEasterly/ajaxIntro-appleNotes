@@ -50,12 +50,14 @@ class NotesApp extends React.Component {
                 handleClick={this._selectNoteAndRenderCopy}
                 />
                 <NoteEditor 
-                updateText={this._setTextValue}
-                currentTextField={this.state.currentTextField}
+                note={this._getNoteById()}
                 />
             </div>
         )
     }
+
+    
+    _getNoteById=()=> this.state.notes.find(note=>note.id===this.state.currentNoteId) || {};
 
     _setTextValue=(newNote)=> {
         let newNoteState = [...this.state.notes]
@@ -93,7 +95,6 @@ class NotesApp extends React.Component {
         this.setState({
             currentNoteId
         }, ()=>{
-            // console.log(`This.state Currend id: ${this.state.currentNoteId}`)
         })
     }
 
@@ -117,10 +118,6 @@ class NotesApp extends React.Component {
             return titleDoesMatch || copyDoesMatch;
         });
         return filteredArray;
-    }
-    
-    _updateNote=()=>{
-        console.log('fuck')
     }
 
 }
